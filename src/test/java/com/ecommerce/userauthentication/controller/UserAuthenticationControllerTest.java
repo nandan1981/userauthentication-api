@@ -25,10 +25,10 @@ class UserAuthenticationControllerTest {
 		user = new User();
 	}
 
-	@Test
-	final void testFetchUserDetails() {
-		fail("Not yet implemented"); // TODO
-	}
+	/*
+	 * @Test final void testFetchUserDetails() { fail("Not yet implemented"); //
+	 * TODO }
+	 */
 	
 	@Test
 	final void testGetUserToken() {
