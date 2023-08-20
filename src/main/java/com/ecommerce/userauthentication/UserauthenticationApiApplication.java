@@ -8,10 +8,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-public class UserauthenticationApi11Application {
+public class UserauthenticationApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UserauthenticationApi11Application.class, args);
+		SpringApplication.run(UserauthenticationApiApplication.class, args);
 	}
 	
 	@Bean
