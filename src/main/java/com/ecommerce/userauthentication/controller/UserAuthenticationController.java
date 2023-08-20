@@ -16,11 +16,10 @@ import com.ecommerce.userauthentication.model.User;
 @RequestMapping("/authenticate")
 public class UserAuthenticationController {
 	
-	private String java17Test,newnum = """
-								"This is a new String"
-								 "which is great"
-								""";
-	
+	/*
+	 * private String java17Test,newnum = """ "This is a new String"
+	 * "which is great" """;
+	 */	
 	/**
 	 * @param userId
 	 * @return
