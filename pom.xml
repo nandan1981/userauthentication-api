@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.15-SNAPSHOT</version>
+		<version>2.6.6</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ecommerce.userauthentication</groupId>
@@ -22,8 +22,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId> 
-			</dependency> -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -40,23 +42,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-influx</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-sleuth</artifactId>
-			<version>2.1.0.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
+		<!-- <dependency> <groupId>io.micrometer</groupId> <artifactId>micrometer-registry-influx</artifactId> 
+			</dependency> <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-sleuth</artifactId> 
+			<version>2.1.0.RELEASE</version> </dependency> <dependency> <groupId>org.springframework.boot</groupId> 
+			<artifactId>spring-boot-starter-actuator</artifactId> </dependency> -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>5.8.1</version>
+			<version>5.8.2</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -67,10 +60,10 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!-- <plugin>
+			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.7.201606060606</version>
+				<version>0.8.3</version>
 				<executions>
 					<execution>
 						<goals>
@@ -78,35 +71,27 @@
 						</goals>
 					</execution>
 					<execution>
-						<id>report</id>
-						<phase>prepare-package</phase>
+						<id>jacoco-report</id>
+						<phase>test</phase>
 						<goals>
 							<goal>report</goal>
 						</goals>
-					</execution>
 
-					<execution>
-						<id>jacoco-check</id>
-						<goals>
-							<goal>check</goal>
-						</goals>
 						<configuration>
+							<outputDirectory>target/jacoco-report</outputDirectory>
+							<dataFile>${project.build.directory}/coverage-reports/jacoco.exec</dataFile>
 							<rules>
 								<rule>
-									<element>PACKAGE</element>
-									<limits>
-										<limit>
-											<counter>LINE</counter>
-											<value>COVEREDRATIO</value>
-											<minimum>0.50</minimum>
-										</limit>
-									</limits>
+									<element>CLASS</element>
+									<excludes>
+										<exclude>com.ecommerce.userauthentication.UserauthenticationApiApplication</exclude>
+									</excludes>
 								</rule>
 							</rules>
 						</configuration>
 					</execution>
 				</executions>
-			</plugin> -->
+			</plugin>
 		</plugins>
 	</build>
 	<repositories>
