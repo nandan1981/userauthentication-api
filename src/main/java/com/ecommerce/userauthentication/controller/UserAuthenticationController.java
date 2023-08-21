@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerce.userauthentication.exception.JWTokenNotFoundException;
 import com.ecommerce.userauthentication.model.User;
 
 @RestController
@@ -29,6 +30,8 @@ public class UserAuthenticationController {
 	@GetMapping("/helloworld")
 	public String helloworld() {
 		System.out.println("In hello world");
+		if(true)
+			throw new JWTokenNotFoundException();
 		return "Hello World";
 
 	}
@@ -42,6 +45,7 @@ public class UserAuthenticationController {
 
 		User user = new User();
 		user.setName("New User");
+		
 		HttpHeaders headers = new HttpHeaders();
 		return ResponseEntity.ok().headers(headers).body(user);
 	}
@@ -52,6 +56,10 @@ public class UserAuthenticationController {
 	 */
 	@PostMapping("/getUserJWT")
 	public ResponseEntity<String> getUserJWT(@RequestBody User user) {
+		
+		if(user.equals(null))
+			throw new JWTokenNotFoundException();
+		
 		String strJWT = "SDFZE23ZRE==";
 		return ResponseEntity.ok().body(strJWT);
 
