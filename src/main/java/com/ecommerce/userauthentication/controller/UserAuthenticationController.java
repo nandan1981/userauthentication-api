@@ -57,7 +57,7 @@ public class UserAuthenticationController {
 	@PostMapping("/getUserJWT")
 	public ResponseEntity<String> getUserJWT(@RequestBody User user) {
 		
-		if(user.equals(null))
+		if(user == null)
 			throw new JWTokenNotFoundException();
 		
 		String strJWT = "SDFZE23ZRE==";
