@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.userauthentication.exception.JWTokenNotFoundException;
@@ -16,11 +15,6 @@ import com.ecommerce.userauthentication.model.User;
 @RestController
 @RequestMapping("/authenticate")
 public class UserAuthenticationController {
-
-	/*
-	 * private String java17Test,newnum = """ "This is a new String"
-	 * "which is great" """;
-	 */
 
 	/**
 	 * @param userId
@@ -31,7 +25,7 @@ public class UserAuthenticationController {
 	public String helloworld() {
 		System.out.println("In hello world");
 		if(true)
-			throw new JWTokenNotFoundException();
+			throw new JWTokenNotFoundException("Token not found");
 		return "Hello World";
 
 	}
@@ -45,7 +39,6 @@ public class UserAuthenticationController {
 
 		User user = new User();
 		user.setName("New User");
-		
 		HttpHeaders headers = new HttpHeaders();
 		return ResponseEntity.ok().headers(headers).body(user);
 	}
@@ -58,7 +51,7 @@ public class UserAuthenticationController {
 	public ResponseEntity<String> getUserJWT(@RequestBody User user) {
 		
 		if(user == null)
-			throw new JWTokenNotFoundException();
+			throw new JWTokenNotFoundException("No token");
 		
 		String strJWT = "SDFZE23ZRE==";
 		return ResponseEntity.ok().body(strJWT);
