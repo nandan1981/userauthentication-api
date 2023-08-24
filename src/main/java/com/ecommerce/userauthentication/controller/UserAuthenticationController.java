@@ -12,6 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ecommerce.userauthentication.exception.JWTokenNotFoundException;
 import com.ecommerce.userauthentication.model.User;
 
+/**
+ * 
+ * @startuml
+ * Alice -> Bob : Hello
+ * Bob -> Alice : Hello
+ * @enduml
+ */
+
+
 @RestController
 @RequestMapping("/authenticate")
 public class UserAuthenticationController {
@@ -37,7 +46,7 @@ public class UserAuthenticationController {
 	@PostMapping("/fetchUserDetails/userId")
 	public ResponseEntity<User> fetchUserDetails() {
 
-		User user = new User();
+		var user = new User();
 		user.setName("New User");
 		HttpHeaders headers = new HttpHeaders();
 		return ResponseEntity.ok().headers(headers).body(user);
@@ -53,7 +62,7 @@ public class UserAuthenticationController {
 		if(user == null)
 			throw new JWTokenNotFoundException("No token");
 		
-		String strJWT = "SDFZE23ZRE==";
+		var strJWT = "SDFZE23ZRE==";
 		return ResponseEntity.ok().body(strJWT);
 
 	}
