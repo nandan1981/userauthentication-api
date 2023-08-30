@@ -1,9 +1,10 @@
 package com.ecommerce.userauthentication.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +25,10 @@ import com.ecommerce.userauthentication.model.User;
  */
 
 @RestController
-@RequestMapping("/authenticate")
+@RequestMapping("/v1/authenticate")
 public class UserAuthenticationController {
+	
+	 private static final Logger logger = LogManager.getLogger(UserAuthenticationController.class);
 
 	@Autowired
 	public RestTemplate restCall;
@@ -36,7 +39,7 @@ public class UserAuthenticationController {
 	@CrossOrigin(origins = "*")
 	@GetMapping("/helloworld")
 	public String helloworld() {
-		System.out.println("In hello world");
+		logger.info("In hello world");
 		if(true)
 			throw new JWTokenNotFoundException("Token not found");
 		return "Hello World";
@@ -46,11 +49,8 @@ public class UserAuthenticationController {
 	@CrossOrigin(origins = "*")
 	@GetMapping("/callPricingService")
 	public String callPricingService() {
-		
-		ResponseEntity<String> response = restCall.getForEntity("http://localhost:8035/pricing/echo",String.class);
+		ResponseEntity<String> response = restCall.getForEntity("http://localhost:8035/v1/pricing/echo",String.class);
 		return "Response from Pricing service :== "+response.getBody();
-		
-
 	}
 
 	/**
@@ -59,7 +59,6 @@ public class UserAuthenticationController {
 	 */
 	@PostMapping("/fetchUserDetails/userId")
 	public ResponseEntity<User> fetchUserDetails() {
-
 		var user = new User();
 		user.setName("New User");
 		HttpHeaders headers = new HttpHeaders();
@@ -78,6 +77,5 @@ public class UserAuthenticationController {
 		
 		var strJWT = "SDFZE23ZRE==";
 		return ResponseEntity.ok().body(strJWT);
-
 	}
 }

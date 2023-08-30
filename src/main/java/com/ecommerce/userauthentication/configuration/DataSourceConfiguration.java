@@ -10,6 +10,6 @@ package com.ecommerce.userauthentication.configuration;
 * @enduml
  *
  */
-public final class DataSourceConfiguration {
+public interface DataSourceConfiguration {
 
 }
