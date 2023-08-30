@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.ecommerce")
+//@ComponentScan(basePackages = "com.ecommerce")
 public class UserauthenticationApiApplication {
 
 	public static void main(String[] args) {
